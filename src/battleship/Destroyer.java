@@ -2,16 +2,14 @@ package battleship;
 
 public class Destroyer extends Ship{
 	
-	int length = 2;
-	
-	@Override
-	String getShipType() {
-		return "destroyer";
+	public Destroyer() {
+		super(2);
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
-	int getLength() {
-		return length;
+	public String getShipType() {
+		return "destroyer";
 	}
 
 }

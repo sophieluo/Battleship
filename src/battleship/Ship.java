@@ -19,6 +19,10 @@ public abstract class Ship {
 	private boolean[] hit;
 	
 	//constructors
+	/**
+	 * default constructor for the Ship class
+	 * @param length
+	 */
 	public Ship(int length) {
 		
 	}

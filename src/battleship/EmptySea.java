@@ -3,9 +3,10 @@ package battleship;
 public class EmptySea extends Ship {
 	
 	//constructor
-	public EmptySea();
-	
-	int length = 1;
+	public EmptySea() {
+		super(1);
+		// TODO Auto-generated constructor stub
+	}
 	
 	/**
 	 * return is always false because it's always the case that nothing was hit

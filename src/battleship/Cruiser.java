@@ -2,16 +2,18 @@ package battleship;
 
 public class Cruiser extends Ship {
 	
-	int length = 3;
-	
+	//constructor
+	public Cruiser() {
+		super(3);		
+	}
+
+	/**
+	 * returns string "cruiser"
+	 */
 	@Override
-	String getShipType() {
+	public String getShipType() {
 		return "cruiser";
 	}
 	
-	@Override
-	int getLength() {
-		return length;
-	}
 
 }
