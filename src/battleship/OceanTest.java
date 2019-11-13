@@ -5,69 +5,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ShipTest {
+class OceanTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
 	}
 
 	@Test
-	void testShip() {
+	void testOcean() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetLength() {
+	void testPlaceAllShipsRandomly() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetBowRow() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetBowColumn() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetHit() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testIsHorizontal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetBowRow() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetBowColumn() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetHorizontal() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetShipType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testOKToPlaceShipAt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPlaceShipAt() {
+	void testIsOccupied() {
 		fail("Not yet implemented");
 	}
 
@@ -77,12 +32,32 @@ class ShipTest {
 	}
 
 	@Test
-	void testIsSunk() {
+	void testGetShotsFired() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testToString() {
+	void testGetHitCount() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetShipsSunk() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testIsGameOver() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetShipArray() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testPrint() {
 		fail("Not yet implemented");
 	}
 
