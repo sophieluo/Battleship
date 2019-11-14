@@ -111,6 +111,7 @@ public abstract class Ship {
 	 */
 	boolean oKToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		//code to implement
+		
 		return false;
 	}
 	

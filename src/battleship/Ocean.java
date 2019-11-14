@@ -44,6 +44,13 @@ public class Ocean {
 	 */
 	void placeAllShipsRandomly() {
 		//code to implement
+		Random rand = new Random();
+		int row;
+		int column;
+		boolean horizontal;
+		
+		//place battleships
+		
 	}
 	
 	/**
