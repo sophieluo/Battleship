@@ -125,7 +125,10 @@ public class Ocean {
 	 */
 	boolean isOccupied(int row, int column) {
 		//code to implement
-		return false;
+		if (ships[row][column] instanceof EmptySea) {
+			return false;
+		}
+		return true;
 	}
 	
 	/**
