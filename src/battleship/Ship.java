@@ -181,14 +181,26 @@ public abstract class Ship {
 	 * @return
 	 */
 	boolean shootAt(int row, int column) {
+		
 		//first check if ship is sunk
 		if(this.isSunk() == false) {
+			
 			if(this.horizontal) {
-				//where is the part of the ship being shot at
+				//shot at (row, column)
+				//hit[i] is hit. i = column - bowColumn
+				hit[column - this.bowColumn] = true;
+				return true;
+			}
+			// if it's vertical. same logic
+			else {
+				hit[row - this.bowRow] = true;
+				return true;
 			}
 		}
-		//if it's already sunk, return false?
+		else {
+		//if it's already sunk, return false
 		return false;
+		}
 	}
 	
 	/**
@@ -205,12 +217,19 @@ public abstract class Ship {
 		return true;
 	}
 	
+	/**
+	 * returns "s" if ship has been sunk and "x" if it has not
+	 * not used to print locations that have not been shot at
+	 */
 	@Override
 	public String toString() {
-		if (this.isSunk()) {
-			return "x";
-		} else {
+		// s for sunk
+		if (this.isSunk() == true) {
 			return "s";
+		}
+		// x for not sunk
+		else {
+			return "x";
 		}
 	}
 	
