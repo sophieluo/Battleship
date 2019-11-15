@@ -26,6 +26,7 @@ public class EmptySea extends Ship {
 	
 	/**
 	 * returns the single-character "-" String to use in the Ocean's print method
+	 * indicates that a shot has been fired, but nothing has been hit.
 	 */
 	@Override
 	public String toString() {
