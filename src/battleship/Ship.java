@@ -21,12 +21,14 @@ public abstract class Ship {
 	//constructors
 	/**
 	 * default constructor for the Ship class
+	 * initializes the hit array
 	 * @param length
 	 */
 	public Ship(int length) {
-		
+		hit = new boolean[] {false, false, false, false};
 	}
 	
+	//methods
 	//getters
 	/**
 	 * 
@@ -98,6 +100,10 @@ public abstract class Ship {
 	
 	
 	//abstract methods
+	/**
+	 * 
+	 * @return type of this ship.
+	 */
 	public abstract String getShipType();
 	
 	//other methods
@@ -112,46 +118,118 @@ public abstract class Ship {
 	boolean oKToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
 		//code to implement
 		
-		return false;
+		//checks if it's horizontally placed
+		if (horizontal) {
+			//if horizontally placed and column(location of bow) plus the length of the ship is over 10, sticks out beyond. so return false
+			if (column + getLength() > 10) {
+				return false;
+			} else if (some condition to check overlap or touch) {
+				return false;
+			} else {
+				return true;
+			}		
+		} else {
+			//similarly, if vertically placed and sticks out, returns false
+			if (row + getLength() > 10) {
+				return false;
+			} else if (some condition) {
+				return false;
+			} else {
+				return true;
+			}
+			
+		}
 	}
 	
 	/**
-	 * 
+	 * puts the ship in the ocean
 	 * @param row
 	 * @param column
 	 * @param horizontal
 	 * @param ocean
+	 * also involves putting a reference to the ship in each of 1 or more locations (up to 4) in the ships array in the Ocean object.
+	 * horizontal: east; vertical: south
 	 */
 	void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		//code to implement
+		this.setBowRow(row);
+		this.setBowColumn(column);
+		this.setHorizontal(horizontal);
+		
+		//create ships array
+		//should be the same if do Ship[][] ships = new Ship[10][10];
+		Ship[][] ships = ocean.getShipArray();
+		
+		//if horizontal, place ship at (starting at [row][column], for length)
+		if (horizontal) {
+			for (int i = column; i < column + this.getLength(); i++) {
+				ships[row][i] = this;
+			}
+		}
+		//else if vertical
+		else {
+			for (int j = row; j < row + this.getLength(); j++) {
+				ships[j][column] = this;
+			}
+			
+		}
 	}
 	
 	/**
-	 * 
+	 * mark the part of the ship being shot at as "hit" and return true, otherwise return false
 	 * @param row
 	 * @param column
 	 * @return
 	 */
 	boolean shootAt(int row, int column) {
+		
+		//first check if ship is sunk
+		if(this.isSunk() == false) {
+			
+			if(this.horizontal) {
+				//shot at (row, column)
+				//hit[i] is hit. i = column - bowColumn
+				hit[column - this.bowColumn] = true;
+				return true;
+			}
+			// if it's vertical. same logic
+			else {
+				hit[row - this.bowRow] = true;
+				return true;
+			}
+		}
+		else {
+		//if it's already sunk, return false
 		return false;
-		//code to implement
+		}
 	}
 	
 	/**
 	 * 
-	 * @return
+	 * @return true if every part of the ship has been hit, false otherwise
 	 */
 	boolean isSunk() {
-		return false;
-		//code to implement
+		for (int i = 0; i < getLength(); i++) {
+			if(this.hit[i] == false) {
+				return false;
+			}
+		}
+		//default is sunk
+		return true;
 	}
 	
+	/**
+	 * returns "s" if ship has been sunk and "x" if it has not
+	 * not used to print locations that have not been shot at
+	 */
 	@Override
 	public String toString() {
-		if (this.isSunk()) {
-			return "x";
-		} else {
+		// s for sunk
+		if (this.isSunk() == true) {
 			return "s";
+		}
+		// x for not sunk
+		else {
+			return "x";
 		}
 	}
 	
