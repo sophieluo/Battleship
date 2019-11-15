@@ -125,6 +125,8 @@ public class Ocean {
 	 */
 	boolean isOccupied(int row, int column) {
 		//code to implement
+		
+		// if it's an intance of EmptySea, it's not occupied
 		if (ships[row][column] instanceof EmptySea) {
 			return false;
 		}
@@ -141,8 +143,22 @@ public class Ocean {
 	 * @return
 	 */
 	boolean shootAt(int row, int column) {
-		//code to implement
-		return false;
+		
+		fired[row][column] = true;
+		shotsFired ++;
+		
+		//if it's an intance of EmptySea, it's not a real ship, should return false
+		if (ships[row][column] instanceof EmptySea) {
+			return false;
+		}
+		// if the ship is sunk
+		else if(ships[row][column].isSunk()) {
+			return false;
+		}
+		else {
+			hitCount++;
+			return true;
+		}
 	}
 	
 	/**
@@ -176,7 +192,15 @@ public class Ocean {
 	boolean isGameOver() {
 		int count = 0;
 		
-		//code to implements. counts the number of ships that's sunk
+		//code to implement. counts the number of ships that's sunk
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (ships[i][j].isSunk()) {
+					count++;
+				}
+			}
+		}
+		//20 is the total length (squares of all 10 ships of 4 kinds)
 		return count == 20;
 	}
 	
