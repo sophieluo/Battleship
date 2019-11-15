@@ -22,6 +22,13 @@ public class Ocean {
 	//the number of ships sunk(10 ships in all)
 	private int shipsSunk;
 	
+	//static
+	private static final int NUM_BATTLESHIPS = 1;
+	private static final int NUM_CRUISERS = 2;
+	private static final int NUM_DESTROYERS = 3;
+	private static final int NUM_SUBMARINES = 4;
+	
+	
 	//constructors
 	/**
 	 * creates an "empty" ocean (and fills the ships array with EmptySea objects). 
@@ -31,6 +38,8 @@ public class Ocean {
 	public Ocean() {
 		shotsFired = 0;
 		hitCount = 0;
+		shipsSunk = 0;
+		
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				ships[i][j] = new EmptySea();
@@ -45,11 +54,66 @@ public class Ocean {
 	void placeAllShipsRandomly() {
 		//code to implement
 		Random rand = new Random();
+		
 		int row;
 		int column;
 		boolean horizontal;
 		
 		//place battleships
+		for (int i = 0; i < Ocean.NUM_BATTLESHIPS; i++) {
+			Ship battleship = new Battleship();
+			row = rand.nextInt(10);
+			column = rand.nextInt(10);
+			horizontal = rand.nextInt(2) == 0 ? false : true;
+			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+				row = rand.nextInt(10);
+				column = rand.nextInt(10);
+				horizontal = rand.nextInt(2) == 0 ? false : true;
+			}
+			battleship.placeShipAt(row, column, horizontal, this);
+		}
+		
+		//place cruisers
+		for (int i = 0; i < Ocean.NUM_CRUISERS; i++) {
+			Ship battleship = new Battleship();
+			row = rand.nextInt(10);
+			column = rand.nextInt(10);
+			horizontal = rand.nextInt(2) == 0 ? false : true;
+			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+				row = rand.nextInt(10);
+				column = rand.nextInt(10);
+				horizontal = rand.nextInt(2) == 0 ? false : true;
+			}
+			battleship.placeShipAt(row, column, horizontal, this);
+		}
+		
+		//place destroyers
+		for (int i = 0; i < Ocean.NUM_DESTROYERS; i++) {
+			Ship battleship = new Battleship();
+			row = rand.nextInt(10);
+			column = rand.nextInt(10);
+			horizontal = rand.nextInt(2) == 0 ? false : true;
+			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+				row = rand.nextInt(10);
+				column = rand.nextInt(10);
+				horizontal = rand.nextInt(2) == 0 ? false : true;
+			}
+			battleship.placeShipAt(row, column, horizontal, this);
+		}
+		
+		//place submarines
+		for (int i = 0; i < Ocean.NUM_SUBMARINES; i++) {
+			Ship battleship = new Battleship();
+			row = rand.nextInt(10);
+			column = rand.nextInt(10);
+			horizontal = rand.nextInt(2) == 0 ? false : true;
+			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+				row = rand.nextInt(10);
+				column = rand.nextInt(10);
+				horizontal = rand.nextInt(2) == 0 ? false : true;
+			}
+			battleship.placeShipAt(row, column, horizontal, this);
+		}
 		
 	}
 	

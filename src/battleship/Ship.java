@@ -151,9 +151,9 @@ public abstract class Ship {
 	 * horizontal: east; vertical: south
 	 */
 	void placeShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		setBowRow(row);
-		setBowColumn(column);
-		setHorizontal(horizontal);
+		this.setBowRow(row);
+		this.setBowColumn(column);
+		this.setHorizontal(horizontal);
 		
 		//create ships array
 		//should be the same if do Ship[][] ships = new Ship[10][10];
@@ -161,13 +161,13 @@ public abstract class Ship {
 		
 		//if horizontal, place ship at (starting at [row][column], for length)
 		if (horizontal) {
-			for (int i = column; i < column + getLength(); i++) {
+			for (int i = column; i < column + this.getLength(); i++) {
 				ships[row][i] = this;
 			}
 		}
 		//else if vertical
 		else {
-			for (int j = row; j < row + getLength(); j++) {
+			for (int j = row; j < row + this.getLength(); j++) {
 				ships[j][column] = this;
 			}
 			
