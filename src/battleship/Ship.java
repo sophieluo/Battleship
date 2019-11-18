@@ -116,30 +116,40 @@ public abstract class Ship {
 	 * @return true if it is okay to put a ship of this length with its bow in this position, false otherwise
 	 */
 	boolean oKToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		//code to implement
 		
 		//checks if it's horizontally placed
 		if (horizontal) {
 			//if horizontally placed and column(location of bow) plus the length of the ship is over 10, sticks out beyond. so return false
 			if (column + getLength() > 10) {
 				return false;
-			} else if (some condition to check overlap or touch) {
-				return false;
-			} else {
+			} 
+			//if overlap or touch, return false
+			//start counting from column - 1, b/c can't diagonally touch
+			for (int c = column - 1; c <= column + getLength(); c++) {
+				if (ocean.isOccupied(row - 1, c) || ocean.isOccupied(row, c) || ocean.isOccupied(row + 1, c)) {
+					return false;
+				}
+			}
+			//default is return true
 				return true;
-			}		
-		} else {
+			}
+		
+		 else {
 			//similarly, if vertically placed and sticks out, returns false
 			if (row + getLength() > 10) {
 				return false;
-			} else if (some condition) {
-				return false;
-			} else {
-				return true;
 			}
-			
+			//if overlap or touch, return false
+			for (int r = row - 1; r <= row + getLength(); r++) {
+				if (ocean.isOccupied(r, column - 1) || ocean.isOccupied(r, column) || ocean.isOccupied(r, column + 1)) {
+					return false;
+				}
+			}
+			return true;
 		}
 	}
+	
+	
 	
 	/**
 	 * puts the ship in the ocean

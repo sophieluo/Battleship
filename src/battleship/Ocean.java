@@ -43,6 +43,7 @@ public class Ocean {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				ships[i][j] = new EmptySea();
+				fired[i][j] = false;
 			}
 		}
 	}
@@ -52,15 +53,15 @@ public class Ocean {
 	 * place all ten ships randomly on the (initially empty) ocean. Place larger ships before smaller ships.
 	 */
 	void placeAllShipsRandomly() {
-		//code to implement
 		Random rand = new Random();
 		
 		int row;
 		int column;
 		boolean horizontal;
 		
+		//the following code copied from Prof. lecture slides
 		//place battleships
-		for (int i = 0; i < Ocean.NUM_BATTLESHIPS; i++) {
+		for (int i = 0; i < Ocean.NUM_BATTLESHIPS + 1; i++) {
 			Ship battleship = new Battleship();
 			row = rand.nextInt(10);
 			column = rand.nextInt(10);
@@ -74,48 +75,64 @@ public class Ocean {
 		}
 		
 		//place cruisers
-		for (int i = 0; i < Ocean.NUM_CRUISERS; i++) {
-			Ship battleship = new Battleship();
+		for (int i = 0; i < Ocean.NUM_CRUISERS + 1; i++) {
+			Ship cruiser = new Cruiser();
 			row = rand.nextInt(10);
 			column = rand.nextInt(10);
 			horizontal = rand.nextInt(2) == 0 ? false : true;
-			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+			while(!cruiser.oKToPlaceShipAt(row, column, horizontal, this)) {
 				row = rand.nextInt(10);
 				column = rand.nextInt(10);
 				horizontal = rand.nextInt(2) == 0 ? false : true;
 			}
-			battleship.placeShipAt(row, column, horizontal, this);
+			cruiser.placeShipAt(row, column, horizontal, this);
 		}
 		
 		//place destroyers
-		for (int i = 0; i < Ocean.NUM_DESTROYERS; i++) {
-			Ship battleship = new Battleship();
+		for (int i = 0; i < Ocean.NUM_DESTROYERS + 1; i++) {
+			Ship destroyer = new Destroyer();
 			row = rand.nextInt(10);
 			column = rand.nextInt(10);
 			horizontal = rand.nextInt(2) == 0 ? false : true;
-			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+			while(!destroyer.oKToPlaceShipAt(row, column, horizontal, this)) {
 				row = rand.nextInt(10);
 				column = rand.nextInt(10);
 				horizontal = rand.nextInt(2) == 0 ? false : true;
 			}
-			battleship.placeShipAt(row, column, horizontal, this);
+			destroyer.placeShipAt(row, column, horizontal, this);
 		}
 		
 		//place submarines
-		for (int i = 0; i < Ocean.NUM_SUBMARINES; i++) {
-			Ship battleship = new Battleship();
+		for (int i = 0; i < Ocean.NUM_SUBMARINES + 1; i++) {
+			Ship submarine = new Submarine();
 			row = rand.nextInt(10);
 			column = rand.nextInt(10);
 			horizontal = rand.nextInt(2) == 0 ? false : true;
-			while(!battleship.oKToPlaceShipAt(row, column, horizontal, this)) {
+			while(!submarine.oKToPlaceShipAt(row, column, horizontal, this)) {
 				row = rand.nextInt(10);
 				column = rand.nextInt(10);
 				horizontal = rand.nextInt(2) == 0 ? false : true;
 			}
-			battleship.placeShipAt(row, column, horizontal, this);
+			submarine.placeShipAt(row, column, horizontal, this);
 		}
 		
-	}
+//		Ship[] myShips = {new Battleship(), new Cruiser(), new Cruiser(), new Destroyer(), 
+//		    new Destroyer(), new Destroyer(), new Submarine(), new Submarine(), 
+//		    new Submarine(), new Submarine()};
+//			Random random = new Random();
+//			for (int i = 0; i < 10; ++i) {
+//				Ship ship = myShips[i];
+//				while (true) {
+//					int x = random.nextInt(10);
+//					int y = random.nextInt(10);
+//					boolean horizontal = random.nextInt(2) == 0;
+//					if (ship.oKToPlaceShipAt(x, y, horizontal, this)) {
+//						ship.placeShipAt(x, y, horizontal, this);
+//						break;
+//					}
+//				}
+//			}
+		}
 	
 	/**
 	 * returns true if the given location contains a ship, false if it does not
@@ -125,8 +142,10 @@ public class Ocean {
 	 */
 	boolean isOccupied(int row, int column) {
 		//code to implement
-		
-		// if it's an intance of EmptySea, it's not occupied
+		if (row < 0 || row > 9 || column < 0 || column > 9) {
+			return false;
+		}	
+		// if it's an instance of EmptySea, it's not occupied
 		if (ships[row][column] instanceof EmptySea) {
 			return false;
 		}
@@ -146,18 +165,12 @@ public class Ocean {
 		
 		fired[row][column] = true;
 		shotsFired ++;
-		
-		//if it's an intance of EmptySea, it's not a real ship, should return false
-		if (ships[row][column] instanceof EmptySea) {
-			return false;
-		}
-		// if the ship is sunk
-		else if(ships[row][column].isSunk()) {
-			return false;
-		}
-		else {
-			hitCount++;
-			return true;
+
+		if (ships[row][column].shootAt(row, column)) {
+		    hitCount++;
+		    return true;
+		} else {
+		    return false;   
 		}
 	}
 	
