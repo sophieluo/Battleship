@@ -125,8 +125,10 @@ public class Ocean {
 	 */
 	boolean isOccupied(int row, int column) {
 		//code to implement
-		
-		// if it's an intance of EmptySea, it's not occupied
+		if (row < 0 || row > 9 || column < 0 || column > 9) {
+			return false;
+		}	
+		// if it's an instance of EmptySea, it's not occupied
 		if (ships[row][column] instanceof EmptySea) {
 			return false;
 		}
@@ -147,7 +149,7 @@ public class Ocean {
 		fired[row][column] = true;
 		shotsFired ++;
 		
-		//if it's an intance of EmptySea, it's not a real ship, should return false
+		//if it's an instance of EmptySea, it's not a real ship, should return false
 		if (ships[row][column] instanceof EmptySea) {
 			return false;
 		}
