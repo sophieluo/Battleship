@@ -116,7 +116,6 @@ public abstract class Ship {
 	 * @return true if it is okay to put a ship of this length with its bow in this position, false otherwise
 	 */
 	boolean oKToPlaceShipAt(int row, int column, boolean horizontal, Ocean ocean) {
-		//code to implement
 		
 		//checks if it's horizontally placed
 		if (horizontal) {

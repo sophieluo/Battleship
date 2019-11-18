@@ -23,12 +23,12 @@ public class BattleshipGame {
 		ocean.print();
 		
 		while(ocean.isGameOver() == false) {
-			System.out.println("Please enter two integers beween 0 and 9, inclusive");
+			System.out.println("Enter row, column:");
 			int row = sc.nextInt();
 			int column = sc.nextInt();
 			
 			if(ocean.shootAt(row, column)) {
-				System.out.println("hit");
+				System.out.println("hit! checking if it's sunk...");
 				Ship[][] ships = ocean.getShipArray();
 				if (ships[row][column].isSunk()) {
 					System.out.println(ships[row][column].getShipType() + " is sunk.");
