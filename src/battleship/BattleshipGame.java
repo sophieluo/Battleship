@@ -8,6 +8,7 @@ public class BattleshipGame {
 	/**
 	 * The 
 	 * @param args
+	 * @author Xiexiao Luo (xiexiao@wharton.upenn.edu) & 
 	 */
 	public static void main(String[] args) {
 		BattleshipGame game  = new BattleshipGame();

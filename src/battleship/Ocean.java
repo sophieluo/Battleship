@@ -7,20 +7,23 @@ public class Ocean {
 	//instance variables
 	
 	//used to quickly determine which ship is in any given location
-	private Ship[][]ships = new Ship[10][10];
+	public Ship[][]ships = new Ship[10][10];
 	
 	//helper method
 	//an array of booleans telling whether the user has fired on a certain location
 	boolean[][] fired = new boolean[10][10];
 	
 	//the total number of shots fired by the user
-	private int shotsFired;
+	//changed to public b/c want to access from testOcean
+	public int shotsFired;
 	
 	//the number of times a shot hit a ship
-	private int hitCount;
+	//changed to public b/c want to access from testOcean
+	public int hitCount;
 	
 	//the number of ships sunk(10 ships in all)
-	private int shipsSunk;
+	//changed to public b/c want to access from testOcean
+	public int shipsSunk;
 	
 	//static
 	private static final int NUM_BATTLESHIPS = 1;
