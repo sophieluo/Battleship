@@ -25,7 +25,8 @@ public abstract class Ship {
 	 * @param length
 	 */
 	public Ship(int length) {
-		hit = new boolean[] {false, false, false, false};
+		this.hit = new boolean[length];
+		this.length = length;
 	}
 	
 	//methods
